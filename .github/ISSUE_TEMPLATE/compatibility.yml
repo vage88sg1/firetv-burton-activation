@@ -1,0 +1,39 @@
+name: Compatibility report
+description: Report a device/firmware result without sharing private device data.
+title: "[Compatibility] model / firmware"
+body:
+  - type: markdown
+    attributes:
+      value: "Do not paste serials, IP addresses, raw logs, configuration JSON, screenshots or backups. This form does not authorize a live root attempt."
+  - type: input
+    id: model
+    attributes:
+      label: Product, model and codename
+      placeholder: "Fire TV product / model / codename"
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Fire OS version and full build
+    validations:
+      required: true
+  - type: input
+    id: launcher
+    attributes:
+      label: Stock launcher version/code
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Observed stage
+      options:
+        - Read-only inspection only
+        - Unsupported profile; stopped
+        - Authorized probe only
+        - Authorized live attempt failed
+        - UI activated and verified after reboot
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized observations and recovery status
+      description: "State what you observed and what remains unverified; exclude identifiers and raw device files."

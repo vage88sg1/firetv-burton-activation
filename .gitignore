@@ -1,0 +1,22 @@
+# Every device case and upstream artifact stays local.
+.local/
+private/
+backups/
+*.apk
+*.apks
+*.arm
+*.db
+*.db-*
+*.sqlite*
+*.tar
+*.tgz
+*.log
+*.har
+*.pcap*
+*.pem
+*.key
+.env*
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store

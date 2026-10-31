@@ -1,0 +1,22 @@
+{
+  "name": "official-firetv-burton",
+  "version": 1,
+  "kind": "operator-assisted-workflow",
+  "entrypoint": "skills/firetv-burton/SKILL.md",
+  "runbook": "skills/firetv-burton/references/workflow.md",
+  "recovery": "skills/firetv-burton/references/recovery.md",
+  "executes_automatically": false,
+  "stages": [
+    {"id": "inspect", "effect": "read-only", "require": ["owner-selected ADB device"], "output": "private baseline", "stop_if": "exact profile mismatch"},
+    {"id": "choose", "effect": "none", "require": ["user-selected expiry", "explicit refresh-freeze choice"]},
+    {"id": "prepare-helper", "effect": "local-files-only", "require": ["pinned upstream artifact hash"], "output": "one-byte data-patched helper"},
+    {"id": "temporary-root", "effect": "kernel-and-temporary-system-state", "require": ["informed owner authorization", "safe probe pass"], "maximum_attempts_per_authorization": 1, "automated": false, "stop_if": "failed or parked attempt; no automatic retry"},
+    {"id": "restore-held-paths", "effect": "restore-filesystem-state", "require": ["verified existing root session"], "stop_if": "original and held path both exist"},
+    {"id": "capture", "effect": "brief-launcher-pause-and-private-local-backup", "require": ["matching device baseline", "coherent SQLite state"], "output": "original DB, XML and identity files"},
+    {"id": "prepare-config", "effect": "local-files-only", "output": "separate files and reviewable plan", "stop_if": "unrecognized schema"},
+    {"id": "apply", "effect": "private-launcher-configuration", "require": ["reviewed plan", "unchanged source hashes", "working rollback files"], "on_failure": "attempt immediate rollback, resume process, inspect"},
+    {"id": "verify", "effect": "read-only-and-owner-navigation", "require": ["Burton output flags", "visible working official UI", "no new launcher crash"]},
+    {"id": "finish", "effect": "restore-system-state-cleanup-and-reboot", "require": ["restored OTA paths", "restored package and setting baselines"], "stop_if": "restoration incomplete"},
+    {"id": "verify-reboot", "effect": "read-only", "require": ["Burton persists", "UID 2000", "SELinux Enforcing", "no root daemon", "owner confirmation"]}
+  ]
+}

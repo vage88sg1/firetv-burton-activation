@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fire TV Burton"
+  short_description: "Activate and recover the official Fire TV Home"
+  default_prompt: "Use $firetv-burton to check my Fire TV and guide activation of the official new Amazon Home."
