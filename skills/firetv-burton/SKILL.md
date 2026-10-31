@@ -48,6 +48,10 @@ Non-obvious constraints:
 The helper preparation and config transformations in `scripts/burton.py` are
 offline. `inspect` is read-only. Neither script starts an exploit, installs APKs,
 flashes partitions, or grants itself permission. CI does not connect to TVs.
+Resolve scripts relative to this skill's actual installation directory. Runbook
+examples assume a repository clone; for an installed copy, set `BURTON_TOOLS` to
+that copy's absolute `scripts/` path and keep the private case in a writable local
+workspace, rather than writing device backups into the installed skill.
 
 Report observed UI, reboot persistence, cleanup status and remaining limits.
 Distinguish the tested manual procedure from newly packaged utilities: unit
